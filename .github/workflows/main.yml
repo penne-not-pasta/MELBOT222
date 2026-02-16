@@ -26,8 +26,8 @@ jobs:
 
       - name: Run bot
         env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_SECRET: ${{ secrets.API_SECRET }}
+          API_KEY: ${{ secrets.CONSUMER_KEY }}
+          API_SECRET: ${{ secrets.CONSUMER_SECRET }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_SECRET: ${{ secrets.ACCESS_SECRET }}
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
