@@ -6,7 +6,9 @@ on:
     # Cron format: "minute hour day month day_of_week"
     - cron: '0 */2 * * *'  # Runs every 2 hours
   workflow_dispatch:      # Allows you to click a "Run" button to test it
-
+permissions:
+  contents: write  # This allows the runner to push changes (like moving images)
+  pull-requests: write
 jobs:
   build:
     runs-on: ubuntu-latest
