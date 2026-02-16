@@ -4,8 +4,8 @@ import random
 import shutil
 
 # --- API CREDENTIALS (Using Environment Variables for security) ---
-API_KEY = os.environ.get("API_KEY")
-API_SECRET = os.environ.get("API_SECRET")
+API_KEY = os.environ.get("CONSUMER_KEY")
+API_SECRET = os.environ.get("CONSUMER_SECRET")
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 ACCESS_SECRET = os.environ.get("ACCESS_SECRET")
 BEARER_TOKEN = os.environ.get("BEARER_TOKEN")
