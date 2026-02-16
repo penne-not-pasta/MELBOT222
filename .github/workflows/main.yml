@@ -1,0 +1,40 @@
+name: Melanie Bot Daily Post
+
+on:
+  schedule:
+    # This runs every 2.5 hours (approx 150 mins)
+    # Cron format: "minute hour day month day_of_week"
+    - cron: '0 */2 * * *'  # Runs every 2 hours
+  workflow_dispatch:      # Allows you to click a "Run" button to test it
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_SECRET: ${{ secrets.ACCESS_SECRET }}
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+        run: python bot.py
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add posted/ images/
+          git commit -m "Update posted images" || echo "No changes to commit"
+          git push
